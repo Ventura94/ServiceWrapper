@@ -3,20 +3,23 @@ from interfaces.iorm_db import IORMethods
 
 class DjangoORM(IORMethods):
 
-    def create(self):
+    def get(self, **kwargs):
         pass
 
-    def bulk_create(self):
+    def create(self, **kwargs):
         pass
 
-    def update(self):
+    def bulk_create(self, **kwargs):
         pass
 
-    def bulk_update(self):
+    def update(self, **kwargs):
         pass
 
-    def delete(self):
+    def bulk_update(self, **kwargs):
         pass
 
-    def bulk_delete(self):
+    def delete(self, **kwargs):
+        pass
+
+    def bulk_delete(self, **kwargs):
         pass

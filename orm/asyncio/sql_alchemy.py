@@ -1,22 +1,27 @@
+from abc import ABC
+
 from interfaces.iorm_db import IORMethods
 
 
 class SQLAlchemy(IORMethods):
 
-    async def create(self):
+    async def get(self, **kwargs):
         pass
 
-    async def bulk_create(self):
+    async def create(self, **kwargs):
         pass
 
-    async def update(self):
+    async def bulk_create(self, **kwargs):
         pass
 
-    async def bulk_update(self):
+    async def update(self, **kwargs):
         pass
 
-    async def delete(self):
+    async def bulk_update(self, **kwargs):
         pass
 
-    async def bulk_delete(self):
+    async def delete(self, **kwargs):
+        pass
+
+    async def bulk_delete(self, **kwargs):
         pass

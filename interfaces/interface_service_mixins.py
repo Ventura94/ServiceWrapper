@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from ServiceWrapper.interfaces.iorm_db import IORMethods
+from interfaces.iorm_db import IORMethods
 
 
 class IService(ABC):

@@ -1,96 +1,82 @@
-from ServiceWrapper.interfaces.interface_service_mixins import ICreateMixin, IUpdateMixin, IDeleteMixin
+import abc
+
+from interfaces.interface_service_mixins import ICreateMixin, IUpdateMixin, IDeleteMixin
 
 
-class CreateMixin(ICreateMixin):
-    @classmethod
-    async def create(cls, **kwargs) -> None:
-        data = await cls.before_create(**kwargs)
-        await cls.orm_model.create(**data)
-        await cls.after_created(**data)
+class CreateMixin(ICreateMixin, abc.ABC):
 
-    @classmethod
-    async def bulk_create(cls, **kwargs) -> None:
-        data = await cls.before_bulk_create(**kwargs)
-        await cls.orm_model.bulk_create(**data)
-        await cls.after_bulk_created(**data)
+    async def create(self, **kwargs) -> None:
+        data = await self.before_create(**kwargs)
+        await self.orm_model.create(**data)
+        await self.after_created(**data)
 
-    @staticmethod
-    async def before_create(**kwargs):
+    async def bulk_create(self, **kwargs) -> None:
+        data = await self.before_bulk_create(**kwargs)
+        await self.orm_model.bulk_create(**data)
+        await self.after_bulk_created(**data)
+
+    async def before_create(self, **kwargs):
         return kwargs
 
-    @staticmethod
-    async def after_created(**kwargs):
+    async def after_created(self, **kwargs):
         pass
 
-    @staticmethod
-    async def before_bulk_create(**kwargs):
+    async def before_bulk_create(self, **kwargs):
         return kwargs
 
-    @staticmethod
-    async def after_bulk_created(**kwargs):
+    async def after_bulk_created(self, **kwargs):
         pass
 
 
-class UpdateMixin(IUpdateMixin):
-    @classmethod
-    async def update(cls, partial: bool = False, **kwargs):
+class UpdateMixin(IUpdateMixin, abc.ABC):
+
+    async def update(self, partial: bool = False, **kwargs):
         pass
 
-    @classmethod
-    async def bulk_update(cls, partial: bool = False, **kwargs):
+    async def bulk_update(self, partial: bool = False, **kwargs):
         pass
 
-    @staticmethod
-    async def before_update(**kwargs):
+    async def before_update(self, **kwargs):
         return kwargs
 
-    @staticmethod
-    async def after_update(**kwargs):
+    async def after_update(self, **kwargs):
         pass
 
-    @staticmethod
-    async def before_bulk_update(**kwargs):
+    async def before_bulk_update(self, **kwargs):
         return kwargs
 
-    @staticmethod
-    async def after_bulk_update(**kwargs):
+    async def after_bulk_update(self, **kwargs):
         pass
 
 
-class DeleteMixin(IDeleteMixin):
+class DeleteMixin(IDeleteMixin, abc.ABC):
 
-    @classmethod
-    async def delete(cls, soft: bool = True, **kwargs):
-        data = await cls.before_delete(**kwargs)
+    async def delete(self, soft: bool = True, **kwargs):
+        data = await self.before_delete(**kwargs)
         if soft:
             data.update({"is_delete": True})
-            await cls.orm_model.update(**data)
+            await self.orm_model.update(**data)
         else:
-            await cls.orm_model.delete(**data)
-        await cls.after_delete(**data)
+            await self.orm_model.delete(**data)
+        await self.after_delete(**data)
 
-    @classmethod
-    async def bulk_delete(cls, soft: bool = True, **kwargs):
-        data = await cls.before_delete(**kwargs)
+    async def bulk_delete(self, soft: bool = True, **kwargs):
+        data = await self.before_delete(**kwargs)
         if soft:
             data.update({"rife": {"is_delete": True}})
-            await cls.orm_model.bulk_update(**data)
+            await self.orm_model.bulk_update(**data)
         else:
-            await cls.orm_model.bulk_delete(**data)
-        await cls.after_delete(**data)
+            await self.orm_model.bulk_delete(**data)
+        await self.after_delete(**data)
 
-    @staticmethod
-    async def before_delete(**kwargs):
+    async def before_delete(self, **kwargs):
         return kwargs
 
-    @staticmethod
-    async def after_delete(**kwargs):
+    async def after_delete(self, **kwargs):
         pass
 
-    @staticmethod
-    async def before_bulk_delete(**kwargs):
+    async def before_bulk_delete(self, **kwargs):
         return kwargs
 
-    @staticmethod
-    async def after_bulk_delete(**kwargs):
+    async def after_bulk_delete(self, **kwargs):
         pass
