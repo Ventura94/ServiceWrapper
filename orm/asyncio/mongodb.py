@@ -1,9 +1,7 @@
-from interfaces.iorm_db import IORMethods
+from ServiceWrapper.interfaces.iorm_db import IORMethods
 
 
 class MongoDB(IORMethods):
-    async def get_current(self, query):
-        return await self.model.find_one(query)
 
     async def get(self, **kwargs):
         return await self.model.find_one(kwargs)

@@ -9,10 +9,6 @@ class IORMethods(ABC):
         self.model = model
 
     @abstractmethod
-    def get_current(self, query):
-        pass
-
-    @abstractmethod
     def get(self, **kwargs) -> Dict[str, Union[str, int, float, bool, Decimal]]:
         pass
 
