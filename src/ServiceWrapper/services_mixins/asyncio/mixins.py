@@ -1,9 +1,9 @@
-import abc
+from abc import ABC
 
-from interfaces.interface_service_mixins import ICreateMixin, IUpdateMixin, IDeleteMixin
+from ServiceWrapper.interfaces.interface_service_mixins import ICreateMixin, IUpdateMixin, IDeleteMixin
 
 
-class CreateMixin(ICreateMixin, abc.ABC):
+class CreateMixin(ICreateMixin, ABC):
 
     async def create(self, **kwargs) -> None:
         data = await self.before_create(**kwargs)
@@ -28,7 +28,7 @@ class CreateMixin(ICreateMixin, abc.ABC):
         pass
 
 
-class UpdateMixin(IUpdateMixin, abc.ABC):
+class UpdateMixin(IUpdateMixin, ABC):
 
     async def update(self, partial: bool = False, **kwargs):
         pass
@@ -49,7 +49,7 @@ class UpdateMixin(IUpdateMixin, abc.ABC):
         pass
 
 
-class DeleteMixin(IDeleteMixin, abc.ABC):
+class DeleteMixin(IDeleteMixin, ABC):
 
     async def delete(self, soft: bool = True, **kwargs):
         data = await self.before_delete(**kwargs)

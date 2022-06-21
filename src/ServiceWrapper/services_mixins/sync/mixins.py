@@ -1,8 +1,8 @@
 from abc import ABC
-from interfaces.interface_service_mixins import ICreateMixin, IUpdateMixin, IDeleteMixin
+from ServiceWrapper.interfaces.interface_service_mixins import ICreateMixin, IUpdateMixin, IDeleteMixin
 
 
-class CreateMixin(ABC, ICreateMixin):
+class CreateMixin(ICreateMixin, ABC):
 
     def create(self, **kwargs) -> None:
         data = self.before_create(**kwargs)

@@ -1,4 +1,4 @@
-from interfaces.iorm_db import IORMethods
+from Service.Wrapper.interfaces.iorm_db import IORMethods
 
 
 class DjangoORM(IORMethods):

@@ -1,6 +1,6 @@
 from abc import ABC
 
-from interfaces.iorm_db import IORMethods
+from ServiceWrapper.interfaces.iorm_db import IORMethods
 
 
 class SQLAlchemy(IORMethods):
