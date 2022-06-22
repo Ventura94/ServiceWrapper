@@ -1,10 +1,7 @@
-from abc import ABC
-
-from ServiceWrapper.interfaces.iorm_db import IORMethods
+from ServiceWrapper.interfaces.asyncio.iorm_db import IORMethods
 
 
 class SQLAlchemy(IORMethods):
-
     async def get(self, **kwargs):
         pass
 

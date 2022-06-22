@@ -1,10 +1,9 @@
-from typing import Dict, Union
-from decimal import Decimal
 from abc import ABC, abstractmethod
+from decimal import Decimal
+from typing import Dict, Union
 
 
 class IORMethods(ABC):
-
     def __init__(self, model):
         self.model = model
 

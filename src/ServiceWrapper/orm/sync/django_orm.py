@@ -1,8 +1,7 @@
-from Service.Wrapper.interfaces.iorm_db import IORMethods
+from ServiceWrapper.interfaces.sync.iorm_db import IORMethods
 
 
 class DjangoORM(IORMethods):
-
     def get(self, **kwargs):
         pass
 

@@ -1,8 +1,7 @@
-from ServiceWrapper.interfaces.iorm_db import IORMethods
+from ServiceWrapper.interfaces.sync.iorm_db import IORMethods
 
 
 class MongoDB(IORMethods):
-
     def get(self, **kwargs):
         pass
 

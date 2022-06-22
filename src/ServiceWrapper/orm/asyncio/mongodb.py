@@ -1,8 +1,7 @@
-from ServiceWrapper.interfaces.iorm_db import IORMethods
+from ServiceWrapper.interfaces.asyncio.iorm_db import IORMethods
 
 
 class MongoDB(IORMethods):
-
     async def get(self, **kwargs):
         return await self.model.find_one(kwargs)
 

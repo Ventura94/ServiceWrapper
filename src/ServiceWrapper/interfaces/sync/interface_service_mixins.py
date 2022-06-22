@@ -1,17 +1,9 @@
-from abc import ABC, abstractmethod
-from ServiceWrapper.interfaces.iorm_db import IORMethods
+from abc import abstractmethod
 
-
-class IService(ABC):
-
-    @property
-    @abstractmethod
-    def orm_model(self) -> IORMethods:
-        ...
+from ServiceWrapper.interfaces.iservice import IService
 
 
 class ICreateMixin(IService):
-
     @abstractmethod
     def create(self, **kwargs):
         pass
@@ -38,7 +30,6 @@ class ICreateMixin(IService):
 
 
 class IUpdateMixin(IService):
-
     @abstractmethod
     def update(self, partial: bool = False, **kwargs):
         pass
@@ -65,7 +56,6 @@ class IUpdateMixin(IService):
 
 
 class IDeleteMixin(IService):
-
     @abstractmethod
     def delete(self, soft: bool = True, **kwargs):
         pass
