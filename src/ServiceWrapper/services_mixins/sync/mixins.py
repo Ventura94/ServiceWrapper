@@ -1,13 +1,9 @@
 from abc import ABC
 
-from ServiceWrapper.interfaces.interface_service_mixins import (
-    ICreateMixin,
-    IUpdateMixin,
-    IDeleteMixin,
-)
+from ServiceWrapper.interfaces.iservice import IService
 
 
-class CreateMixin(ICreateMixin, ABC):
+class CreateMixin(IService, ABC):
     def create(self, **kwargs) -> None:
         data = self.before_create(**kwargs)
         self.orm_model.create(**data)
@@ -28,7 +24,7 @@ class CreateMixin(ICreateMixin, ABC):
         return kwargs
 
 
-class UpdateMixin(IUpdateMixin):
+class UpdateMixin(IService):
     def update(self, partial: bool = False, **kwargs):
         pass
 
@@ -48,7 +44,7 @@ class UpdateMixin(IUpdateMixin):
         pass
 
 
-class DeleteMixin(IDeleteMixin):
+class DeleteMixin(IService):
     def delete(self, soft: bool = True, **kwargs):
         data = self.before_delete(**kwargs)
         if soft:
