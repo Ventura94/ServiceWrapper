@@ -33,7 +33,6 @@ class Update(IService, ABC):
         assert by in kwargs.keys(), "The field by which it is going to be updated was not defined"
         await self.orm_model.update(by, **kwargs)
 
-
     async def bulk_update(self, partial: bool = False, **kwargs):
         pass
 
@@ -57,7 +56,7 @@ class Delete(IService, ABC):
             data.update({"is_delete": True})
             await self.orm_model.update(by, **data)
         else:
-            await self.orm_model.delete(by, **data)
+            await self.orm_model.delete(by=by, **data)
         await self.after_delete(**data)
 
     async def bulk_delete(self, soft: bool = True, **kwargs):
