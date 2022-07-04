@@ -28,8 +28,11 @@ class Create(IService, ABC):
 
 
 class Update(IService, ABC):
-    async def update(self, partial: bool = False, **kwargs):
-        pass
+
+    async def update(self, by: str = "id", **kwargs):
+        assert by in kwargs.keys(), "The field by which it is going to be updated was not defined"
+        await self.orm_model.update(by, **kwargs)
+
 
     async def bulk_update(self, partial: bool = False, **kwargs):
         pass
