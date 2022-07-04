@@ -20,7 +20,7 @@ class IORMethods(ABC):
         pass
 
     @abstractmethod
-    async def update(self, **kwargs):
+    async def update(self, by: str = "id", **kwargs):
         pass
 
     @abstractmethod
@@ -28,7 +28,7 @@ class IORMethods(ABC):
         pass
 
     @abstractmethod
-    async def delete(self, **kwargs):
+    async def delete(self, soft: bool = True, by: str = "id", **kwargs):
         pass
 
     @abstractmethod

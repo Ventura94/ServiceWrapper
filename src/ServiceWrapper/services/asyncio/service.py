@@ -51,13 +51,13 @@ class Update(IService, ABC):
 
 
 class Delete(IService, ABC):
-    async def delete(self, soft: bool = True, **kwargs):
+    async def delete(self, soft: bool = True, by: str = "id", **kwargs):
         data = await self.before_delete(**kwargs)
         if soft:
             data.update({"is_delete": True})
-            await self.orm_model.update(**data)
+            await self.orm_model.update(by, **data)
         else:
-            await self.orm_model.delete(**data)
+            await self.orm_model.delete(by, **data)
         await self.after_delete(**data)
 
     async def bulk_delete(self, soft: bool = True, **kwargs):
