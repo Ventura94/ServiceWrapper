@@ -3,7 +3,7 @@ from abc import ABC
 from service_wrapper.interfaces.iservice import IService
 
 
-class CreateMixin(IService, ABC):
+class Create(IService, ABC):
     async def create(self, **kwargs) -> None:
         data = await self.before_create(**kwargs)
         await self.orm_model.create(**data)
@@ -27,7 +27,7 @@ class CreateMixin(IService, ABC):
         pass
 
 
-class UpdateMixin(IService, ABC):
+class Update(IService, ABC):
 
     async def update(self, by: str = "id", **kwargs):
         assert by in kwargs.keys(), "The field by which it is going to be updated was not defined"
@@ -49,12 +49,13 @@ class UpdateMixin(IService, ABC):
         pass
 
 
-class DeleteMixin(IService, ABC):
+class Delete(IService, ABC):
     async def delete(self, soft: bool = True, by: str = "id", **kwargs):
+        assert by in kwargs.keys(), f"The field {by} which it is going to be updated was not defined"
         data = await self.before_delete(**kwargs)
         if soft:
             data.update({"is_delete": True})
-            await self.orm_model.update(by, **data)
+            await self.orm_model.update(by=by, **data)
         else:
             await self.orm_model.delete(by=by, **data)
         await self.after_delete(**data)
