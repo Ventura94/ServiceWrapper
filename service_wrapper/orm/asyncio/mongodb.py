@@ -1,4 +1,4 @@
-from ServiceWrapper.interfaces.asyncio.iorm_db import IORMethods
+from service_wrapper.interfaces.asyncio.iorm_db import IORMethods
 
 
 class MongoDB(IORMethods):

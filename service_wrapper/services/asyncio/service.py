@@ -1,6 +1,6 @@
 from abc import ABC
 
-from ServiceWrapper.interfaces.iservice import IService
+from service_wrapper.interfaces.iservice import IService
 
 
 class Create(IService, ABC):

@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Union
 
-from ServiceWrapper.interfaces.sync.iorm_db import IORMethods as AsyncORM
-from ServiceWrapper.interfaces.asyncio.iorm_db import IORMethods as SyncORM
+from service_wrapper.interfaces.sync.iorm_db import IORMethods as AsyncORM
+from service_wrapper.interfaces.asyncio.iorm_db import IORMethods as SyncORM
 
 
 class IService(ABC):
